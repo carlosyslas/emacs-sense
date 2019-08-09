@@ -3,3 +3,5 @@
 /elpa
 /transient
 /auto-save-list
+/.cache
+/quelpa

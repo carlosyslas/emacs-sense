@@ -53,7 +53,7 @@
 
 (add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/") t)
 
-;;(package-initialize)
+(package-initialize)
 
 
 (unless (package-installed-p 'use-package)
@@ -61,6 +61,14 @@
   (package-install 'use-package))
 
 (setq use-package-always-ensure t)
+
+(use-package quelpa
+  :config
+  (quelpa-self-upgrade))
+
+(use-package quelpa-use-package
+  :after
+  (quelpa))
 
 (use-package company
   :config
