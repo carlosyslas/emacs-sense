@@ -37,7 +37,9 @@
 
 (global-auto-revert-mode 1)
 
+(setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode)
+
 
 (when is-mac
   ;; Maximize frame
@@ -80,6 +82,8 @@
   (ivy-use-virtual-buffers t)
   :config
   (ivy-mode))
+
+(use-package hydra)
 
 (use-package exec-path-from-shell
   :config

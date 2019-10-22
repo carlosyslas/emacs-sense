@@ -2,26 +2,46 @@
 
 (use-package go-mode)
 
-(use-package magit)
+(use-package magit
+  :config
+  (bind-key "M-g" 'magit-status))
 
-(use-package projectile)
+(use-package evil-magit
+  :after (magit))
 
-(use-package lsp-mode
-  :commands lsp
-  :init
-  (add-hook 'go-mode-hook #'lsp))
+(use-package projectile
+  :config
+  (projectile-mode))
 
-(use-package lsp-ui
-  :commands lsp-ui-mode)
-
-(use-package tide
-  :hook ((js-mode . tide-setup)))
+(use-package counsel-projectile
+  :after (projectile hydra)
+  :config
+  (defhydra hydra-projectile (global-map "M-p")
+    "Projectile"
+    ("p" counsel-projectile-switch-project "Switch project")
+    ("f" counsel-projectile-find-file "Find file")
+    ;;("s" counsel-projectile-find-file "Search")
+    ("b" counsel-projectile-switch-to-buffer "Switch to buffer")))
 
 (use-package editorconfig
   :config
   (editorconfig-mode 1))
 
 (use-package editorconfig-generate)
+
+;; Process runner
+(use-package prodigy)
+
+;; Javascript
+(use-package tide
+  :hook ((js-mode . tide-setup)))
+
+(use-package prettier-js
+  :hook ((js-mode . prettier-js-mode)))
+
+;; Elixir
+(use-package elixir-mode)
+(use-package alchemist)
 
 
 (provide 'coding-sense)
