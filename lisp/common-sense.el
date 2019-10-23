@@ -85,9 +85,19 @@
 
 (use-package hydra)
 
+(use-package eyebrowse
+  :config
+  (eyebrowse-mode)
+  (dolist (number (number-sequence 1 9))
+    (bind-key (format "M-%d" number) (intern (format "eyebrowse-switch-to-window-config-%d" number)))))
+
 (use-package exec-path-from-shell
   :config
   (exec-path-from-shell-initialize))
+
+(bind-key "M-d" 'dired-jump)
+
+(intern "eyebrowse")
 
 
 (provide 'common-sense)

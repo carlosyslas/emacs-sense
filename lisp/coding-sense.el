@@ -29,6 +29,9 @@
 
 (use-package editorconfig-generate)
 
+(use-package docker
+  :bind (("M-c" . docker)))
+
 ;; Process runner
 (use-package prodigy)
 
@@ -42,6 +45,11 @@
 ;; Elixir
 (use-package elixir-mode)
 (use-package alchemist)
+
+;; Python
+(use-package elpy
+  :init
+  (elpy-enable))
 
 
 (provide 'coding-sense)
