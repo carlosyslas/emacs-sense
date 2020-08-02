@@ -1,7 +1,5 @@
 (require 'use-package)
 
-(use-package go-mode)
-
 (use-package magit
   :config
   (bind-key "M-g" 'magit-status))
@@ -32,24 +30,38 @@
 (use-package docker
   :bind (("M-c" . docker)))
 
+
 ;; Process runner
 (use-package prodigy)
 
 ;; Javascript
+(use-package web-mode
+  :mode ("\\.tsx\\'" . web-mode))
+
+(defun sense/setup-tide ()
+  (tide-setup)
+  (flycheck-mode 1)
+  (eldoc-mode 1)
+  (tide-hl-identifier-mode))
+
 (use-package tide
-  :hook ((js-mode . tide-setup)))
+  :hook ((js-mode . sense/setup-tide)
+	 (web-mode . sense/setup-tide)))
 
 (use-package prettier-js
-  :hook ((js-mode . prettier-js-mode)))
+  :hook ((js-mode . prettier-js-mode)
+	 (web-mode . prettier-js-mode)))
 
-;; Elixir
-(use-package elixir-mode)
-(use-package alchemist)
+;; Golang
+(use-package go-mode)
 
 ;; Python
 (use-package elpy
   :init
   (elpy-enable))
 
+;; Elixir
+(use-package elixir-mode)
+(use-package alchemist)
 
 (provide 'coding-sense)

@@ -37,9 +37,8 @@
 
 (global-auto-revert-mode 1)
 
-(setq display-line-numbers-type 'relative)
-(global-display-line-numbers-mode)
-
+;; Disable line wrapping
+(set-default 'truncate-lines t)
 
 (when is-mac
   ;; Maximize frame
@@ -56,7 +55,6 @@
 (add-to-list 'package-archives (cons "melpa" "https://melpa.org/packages/") t)
 
 (package-initialize)
-
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
