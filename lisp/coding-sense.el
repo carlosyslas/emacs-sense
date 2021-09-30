@@ -4,9 +4,6 @@
   :config
   (bind-key "M-g" 'magit-status))
 
-(use-package evil-magit
-  :after (magit))
-
 (use-package projectile
   :config
   (projectile-mode))
